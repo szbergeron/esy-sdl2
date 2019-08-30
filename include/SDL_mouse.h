@@ -69,6 +69,30 @@ typedef enum
     SDL_MOUSEWHEEL_FLIPPED    /**< The scroll direction is flipped / natural */
 } SDL_MouseWheelDirection;
 
+/**
+ * \brief Describe special boolean attributes on a scroll event
+ */
+
+typedef enum
+{
+    SDL_MOUSESCROLL_START = 0x00000001, /**< I.E. user places fingers on touchpad and begins to move them,
+                                          scroll should start tracking gesture*/
+    SDL_MOUSESCROLL_END = 0x00000002, /**< I.E. user lifts fingers off touchpad*/
+    SDL_MOUSESCROLL_INTERRUPT = 0x00000004, /**< Indicates tentative scroll interrupt, I.E. user
+                                              places two fingers down during a scroll but doesn't tap,
+                                              no scroll actually happens but any current scrolling should
+                                              stop.
+                                              Note: currently not supported at driver level in libinput, tracked in
+                                              https://gitlab.freedesktop.org/libinput/libinput/issues/300*/
+	SDL_MOUSESCROLL_SUPPORTS_PRECISE = 0x00000008, /**< indicates device emits events smaller than a standard wheel click*/
+	SDL_MOUSESCROLL_SOURCE_TOUCH = 0x00000010, /**< hint that source device is a touchpad or similar input,
+												suggests using hysterisis and acceleration curve adjustments to match,
+												disable animated smooth scrolling to reduce latency*/
+	SDL_MOUSESCROLL_SOURCE_WHEEL = 0x00000020, /**< hint that source device is a mouse wheel or similar input*/
+	SDL_MOUSESCROLL_SOURCE_BALL = 0x00000040, /**< hint that source device is a mouse ball or similar input.
+												Suggest disabling inertial scrolling, as input device provides this naturally*/
+} SDL_MouseScrollAttribute;
+
 /* Function prototypes */
 
 /**

@@ -291,7 +291,10 @@ typedef struct SDL_MouseWheelEvent
     Uint32 which;       /**< The mouse instance id, or SDL_TOUCH_MOUSEID */
     Sint32 x;           /**< The amount scrolled horizontally, positive to the right and negative to the left */
     Sint32 y;           /**< The amount scrolled vertically, positive away from the user and negative toward the user */
-    Uint32 direction;   /**< Set to one of the SDL_MOUSEWHEEL_* defines. When FLIPPED the values in X and Y will be opposite. Multiply by -1 to change them back */
+	Sint64 precise_x; 	/**< Most precise available X scroll amount, same as .x for mice where a wheel click is the smallest unit */
+	Sint64 precise_y; 	/**< Most precise available Y scroll amount, same as .y for mice where a wheel click is the smallest unit */
+    Uint32 direction;   /**< Set to one of the SDL_MOUSEWHEEL_* defines from SDL_MouseScrollAttribute. When FLIPPED the values in X and Y will be opposite. Multiply by -1 to change them back */
+    Uint32 flags;       /**< Set to one of the SDL_SCROLL_* defines. Any such flags can be or'd together */
 } SDL_MouseWheelEvent;
 
 /**
