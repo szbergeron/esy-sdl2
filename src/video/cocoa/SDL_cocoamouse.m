@@ -445,7 +445,7 @@ Cocoa_HandleMouseWheel(SDL_Window *window, NSEvent *event)
         y = SDL_floor(y);
     }
 
-    SDL_SendMouseWheel(window, mouseID, x, y, direction);
+    SDL_SendMouseWheel(window, mouseID, x, y, direction, 0);
 }
 
 void

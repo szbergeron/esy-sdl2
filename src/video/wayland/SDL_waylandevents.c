@@ -354,6 +354,7 @@ pointer_handle_axis_common(struct SDL_WaylandInput *input,
     SDL_WindowData *window = input->pointer_focus;
     enum wl_pointer_axis a = axis;
     float x, y;
+    Uint32 flags;
 
     if (input->pointer_focus) {
         switch (a) {
@@ -369,7 +370,10 @@ pointer_handle_axis_common(struct SDL_WaylandInput *input,
                 return;
         }
 
-        SDL_SendMouseWheel(window->sdlwindow, 0, x, y, SDL_MOUSEWHEEL_NORMAL);
+		// construct flags from event hints
+		flags = 0;
+
+        SDL_SendMouseWheel(window->sdlwindow, 0, x, y, SDL_MOUSEWHEEL_NORMAL, flags);
     }
 }
 

@@ -84,13 +84,16 @@ typedef enum
                                               stop.
                                               Note: currently not supported at driver level in libinput, tracked in
                                               https://gitlab.freedesktop.org/libinput/libinput/issues/300*/
-	SDL_MOUSESCROLL_SUPPORTS_PRECISE = 0x00000008, /**< indicates device emits events smaller than a standard wheel click*/
 	SDL_MOUSESCROLL_SOURCE_TOUCH = 0x00000010, /**< hint that source device is a touchpad or similar input,
 												suggests using hysterisis and acceleration curve adjustments to match,
 												disable animated smooth scrolling to reduce latency*/
 	SDL_MOUSESCROLL_SOURCE_WHEEL = 0x00000020, /**< hint that source device is a mouse wheel or similar input*/
 	SDL_MOUSESCROLL_SOURCE_BALL = 0x00000040, /**< hint that source device is a mouse ball or similar input.
 												Suggest disabling inertial scrolling, as input device provides this naturally*/
+	SDL_MOUSESCROLL_SOURCE_TRACKPOINT = 0x00000080, /**< hint that source device is a TrackPoint or derivative/similar device*/
+	SDL_MOUSESCROLL_SOURCE_WHEEL_TILT = 0x00000100, /**< hint that source device is emitting a wheel tilt event*/
+
+	SDL_MOUSESCROLL_SUPPORTS_PRECISE = 0x00010000 /**< indicates device emits events smaller than a standard wheel click*/
 } SDL_MouseScrollAttribute;
 
 /* Function prototypes */

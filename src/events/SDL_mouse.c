@@ -608,7 +608,7 @@ SDL_SendMouseButton(SDL_Window * window, SDL_MouseID mouseID, Uint8 state, Uint8
 }
 
 int
-SDL_SendMouseWheel(SDL_Window * window, SDL_MouseID mouseID, float x, float y, SDL_MouseWheelDirection direction)
+SDL_SendMouseWheel(SDL_Window * window, SDL_MouseID mouseID, float x, float y, SDL_MouseWheelDirection direction, Uint32 flags)
 {
     SDL_Mouse *mouse = SDL_GetMouse();
     int posted;
@@ -649,13 +649,14 @@ SDL_SendMouseWheel(SDL_Window * window, SDL_MouseID mouseID, float x, float y, S
         event.type = SDL_MOUSEWHEEL;
         event.wheel.windowID = mouse->focus ? mouse->focus->id : 0;
         event.wheel.which = mouseID;
-#if 0 /* Uncomment this when it goes in for SDL 2.1 */
+#if 1 /* Uncomment this when it goes in for SDL 2.1 */
         event.wheel.preciseX = x;
         event.wheel.preciseY = y;
 #endif
         event.wheel.x = integral_x;
         event.wheel.y = integral_y;
         event.wheel.direction = (Uint32)direction;
+		event.wheel.flags = flags;
         posted = (SDL_PushEvent(&event) > 0);
     }
     return posted;
